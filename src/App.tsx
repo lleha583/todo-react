@@ -8,6 +8,7 @@ function App() {
   console.log('render app')
 
   const theme = useContext(ThemeContext)
+  //test
 
   return (
     <ThemeContext.Provider value={theme}>
