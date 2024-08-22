@@ -1,20 +1,22 @@
-import { useContext } from 'react'
+
 import './App.css'
-import Posts from './components/Posts/Posts'
-import Sidebar from './layout/Sidebar/Sidebar'
-import ThemeContext from './context/ThemeContext'
+import Filter from './components/Filter/Filter'
+import  Task  from './components/Task/Task'
+
 
 function App() {
-  console.log('render app')
 
-  const theme = useContext(ThemeContext)
-  //test
 
   return (
-    <ThemeContext.Provider value={theme}>
-      <Sidebar />
-      <Posts />
-    </ThemeContext.Provider>
+    <>
+        <h1>ToDo List</h1>  
+        <section>
+          <Filter />
+        </section>
+        <section>
+          <Task />
+        </section>
+    </>
   )
 }
 
