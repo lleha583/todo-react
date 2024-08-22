@@ -8,7 +8,7 @@ export default function Filter() {
             <div className='filter'>   
                 <div className='search'>
                     <input type="text" />
-                    <img src={iconLoop} alt="" />
+                    <img className='icon' src={iconLoop} alt="" />
                 </div>
                 <div className='theme'>
                     <img src={iconTheme} alt="" />

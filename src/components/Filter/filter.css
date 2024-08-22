@@ -1,14 +1,28 @@
 .filter {
     height: 80px;
-    border: 1px solid black;
     display: flex;
     justify-content: center;
-    text-align: center;
+    align-items: center;
     gap: 20px;
 }
 
+.search {
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+}
 
 .search input {
+    border: none;
+    border-radius: 20px;
+    box-sizing: border-box;
+    font-size: 24px;
+    padding: 5px 15px;
     width: 700px;
     height: 50px;
+}
+
+.icon {
+    margin: 0 10px;
+    box-sizing: border-box;
 }
