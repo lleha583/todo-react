@@ -4,18 +4,12 @@
     padding: 10px;
 }
 
-.task_list {
-    text-align: start;
-}
-
 .task_list__inner {
-    border: 1px solid black;
     padding: 10px;
-    border-radius: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
     margin: 20px 0;
-}
-
-.task_list_info {
+    background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,15 +17,30 @@
 
 .task_list_btn button {
     width: 50px;
-    height: 40px;
+    height: 50px;
     margin: 5px;
     border-radius: 10px;
     border: none;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.important {
+    background-image: url('../../assets/icons/icon_important_true.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.important_false {
+    background-image: url('../../assets/icons/icon_important_false.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .btn_task {
-    width: 200px;
+    width: 400px;
     height: 40px;
+    background-color: white;
     border: none;
     background-color: none;
     border-radius: 10px;

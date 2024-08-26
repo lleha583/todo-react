@@ -1,4 +1,3 @@
-import Filter from "../components/Filter/Filter";
 import Task from "../components/Task/Task";
 
 export default function Today() {

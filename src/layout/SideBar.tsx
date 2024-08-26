@@ -10,7 +10,7 @@ export default function SideBar() {
 
   return (
     <>
-      <div className={openSide ? 'sidebar open' : 'sidebar'} >
+      <div className={openSide ? 'sidebar' : 'sidebar open'} >
         <div className="sidebar_btn">
           <img onClick={() => {setOpenSide(!openSide)}} src={sidebar} alt="" />
         </div>
