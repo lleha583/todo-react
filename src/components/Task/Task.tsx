@@ -2,20 +2,14 @@ import { useState } from "react";
 import "./task.scss";
 import { dataTask } from "../../data/dataTask";
 import OpenTask from "./OpenTask";
+import useDelete from "../../hooks/useDelete";
 
 export default function Task() {
   
   const [postList, setPostList] = useState([...dataTask]);
   const [modal, setModal] = useState(false);
 
-  const deleteTask = (id: number) => {
-    setPostList(
-      postList.filter((task) => {
-        if (task.id == id) return false;
-        return true;
-      })
-    );
-  };
+  const deleteTask = (id: number) => {setPostList(useDelete(postList, id))};
 
   const changeImportant = (id: number) => {
     setPostList(postList.filter((task)=> {
