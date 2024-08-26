@@ -1,0 +1,39 @@
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    background-color: white;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.open {
+    width: 60px;
+}
+
+.sidebar_btn {
+    margin: 10px;
+}
+
+.navigation {
+    margin-top: 100px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    gap: 20px;
+    font-size: 24px;
+}

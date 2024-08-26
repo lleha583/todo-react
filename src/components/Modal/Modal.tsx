@@ -7,6 +7,7 @@ export default function Modal({ children, status }: {children: React.ReactNode, 
   return createPortal((
     <div onClick={()=>{status(false)}} className="modal_background">
       <div className="modal_content">{children}</div>
+        <button className="modal_exit">X</button>
     </div>
     ),modalElement
   );

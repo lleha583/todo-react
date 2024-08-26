@@ -1,7 +1,7 @@
 
-import './App.css'
-import Filter from './components/Filter/Filter'
-import  Task  from './components/Task/Task'
+import { Outlet } from 'react-router-dom'
+import './App.scss'
+import SideBar from './layout/SideBar'
 
 
 function App() {
@@ -9,13 +9,10 @@ function App() {
 
   return (
     <>
-        <h1>ToDo List</h1>  
-        <section>
-          <Filter />
-        </section>
-        <section>
-          <Task />
-        </section>
+      <SideBar />
+      <div className='root_children'>
+        <Outlet />
+      </div>
     </>
   )
 }
