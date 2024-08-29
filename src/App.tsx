@@ -6,7 +6,6 @@ import SideBar from './layout/SideBar'
 
 function App() {
 
-
   return (
     <>
       <SideBar />
