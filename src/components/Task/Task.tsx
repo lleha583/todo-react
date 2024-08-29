@@ -1,22 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./task.scss";
 import { dataTask } from "../../data/dataTask";
 import OpenTask from "./OpenTask";
 import useDelete from "../../hooks/useDelete";
 
-export default function Task() {
+interface IProps {
+  important: boolean
+}
+
+export default function Task({ important }: IProps) {
   
   const [postList, setPostList] = useState([...dataTask]);
   const [modal, setModal] = useState(false);
 
-  const deleteTask = (id: number) => {setPostList(useDelete(postList, id))};
+  const deleteTask = (id: number) => { return setPostList(useDelete(postList, id))};
 
+  //сделать задачу важным
   const changeImportant = (id: number) => {
     setPostList(postList.filter((task)=> {
       if(task.id == id) task.important = !task.important
       return true
     }))
   }
+
+  //список важных дел
+  useEffect(()=> {
+    if(important === true) {
+      setPostList(()=> {return postList.filter((post: any)=> {
+      if (post.important === true) return true
+      return false
+    })})}
+  }, [])
 
   return (
     <>
