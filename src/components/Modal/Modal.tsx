@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import "./modal.css";
+import "./modal.scss";
 
 export default function Modal({ children, status }: {children: React.ReactNode, status: any}) {
   const modalElement = document.getElementById("modal") as HTMLDivElement;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./task.scss";
 import { dataTask } from "../../data/dataTask";
 import OpenTask from "./OpenTask";
-import useDelete from "../../hooks/useDelete";
+import { ITask } from "../../interface/interface";
 
 interface IProps {
   important: boolean
@@ -10,10 +10,19 @@ interface IProps {
 
 export default function Task({ important }: IProps) {
   
-  const [postList, setPostList] = useState([...dataTask]);
-  const [modal, setModal] = useState(false);
+  const [postList, setPostList] = useState<ITask[]>([...dataTask]);
+  const [modal, setModal] = useState<boolean>(false);
 
-  const deleteTask = (id: number) => { return setPostList(useDelete(postList, id))};
+
+  //удалить задачу
+  const deleteTask = (id: number) => {
+    setPostList(()=> {
+      return postList.filter((task: ITask) => {
+        if (task.id == id) return false;
+      return true;
+      })
+    })
+  };
 
   //сделать задачу важным
   const changeImportant = (id: number) => {
@@ -36,7 +45,7 @@ export default function Task({ important }: IProps) {
     <>
       <div className="task">
         <div>
-          <button className="btn_task" onClick={() => {setModal(true);}}>Add new task</button>
+          <button className="btn_task_add" onClick={() => {setModal(true);}}>Add new task</button>
         </div>
         <div className="task_list">
           {postList.map((item: any) => {
@@ -49,9 +58,9 @@ export default function Task({ important }: IProps) {
                 <div className="task_list_btn">
                   <button 
                     onClick={() => {changeImportant(item.id)}} 
-                    className={item.important ? 'important' : 'important_false'}>
+                    className={`btn_task btn_important_${item.important}`}>
                     </button>
-                  <button 
+                  <button className="btn_task btn_remove"
                     onClick={() => { deleteTask(item.id);}}>
                     </button>
                 </div>
