@@ -9,15 +9,31 @@ interface IProps {
 }
 
 export default function Task({ important }: IProps) {
-  
-  const [postList, setPostList] = useState<ITask[]>([...dataTask]);
-  const [modal, setModal] = useState<boolean>(false);
 
+  
+  const [taskList, setTaskList] = useState<ITask[]>([...dataTask]);
+  const [modal, setModal] = useState<boolean>(false);
+  
+  //список важных дел
+  useEffect(()=> {
+
+    if (localStorage.key(0) !== null ) {
+      setTaskList([...JSON.parse(localStorage.task)])
+    } else {
+      localStorage.setItem('task', '')
+    }
+
+    if(important === true) {
+      setTaskList(()=> {return taskList.filter((post: any)=> {
+      if (post.important === true) return true
+      return false
+    })})}
+  }, [])
 
   //удалить задачу
   const deleteTask = (id: number) => {
-    setPostList(()=> {
-      return postList.filter((task: ITask) => {
+    setTaskList(() => {
+      return taskList.filter((task: ITask) => {
         if (task.id == id) return false;
       return true;
       })
@@ -26,28 +42,25 @@ export default function Task({ important }: IProps) {
 
   //сделать задачу важным
   const changeImportant = (id: number) => {
-    setPostList(postList.filter((task)=> {
+    const setTask = taskList
+    setTaskList(setTask.filter((task) => {
       if(task.id == id) task.important = !task.important
       return true
     }))
+
+    localStorage.task = JSON.stringify(setTask)
   };
 
   //выполнить
   const changeComplete = (id: number) => {
-    setPostList(postList.filter((task)=> {
+    const setTask = taskList
+    setTaskList(setTask.filter((task) => {
       if(task.id == id) task.complete = !task.complete
       return true
     }))
-  };
 
-  //список важных дел
-  useEffect(()=> {
-    if(important === true) {
-      setPostList(()=> {return postList.filter((post: any)=> {
-      if (post.important === true) return true
-      return false
-    })})}
-  }, [])
+    localStorage.task = JSON.stringify(setTask)
+  };
 
   return (
     <>
@@ -56,7 +69,7 @@ export default function Task({ important }: IProps) {
           <button className="btn_task_add" onClick={() => {setModal(true);}}>Add new task</button>
         </div>
         <div className="task_list">
-          {postList.map((item: any) => {
+          {taskList.map((item: any) => {
             return (
               <div className="task_list__inner" key={item.id}>
                 <div>
@@ -82,7 +95,7 @@ export default function Task({ important }: IProps) {
         </div>
       </div>
       {modal === true ? (
-        <OpenTask setModal={setModal} setPostList={setPostList} postList={postList} />
+        <OpenTask setModal={setModal} setTaskList={setTaskList} postList={taskList} />
       ) : (
         ""
       )}

@@ -2,24 +2,28 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import './task.scss'
 
-export default function OpenTask({ setModal, setPostList, postList }: any) {
+export default function OpenTask({ setModal, setTaskList, taskList }: any) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [important, setImportant] = useState(false);
   const [complete, setComplete] = useState(false)
 
   const createNewTask = () => {
-    setPostList([
+    const setTask = [
       {
         body: body,
         title: title,
-        important: false,
-        complete: false,
-        id: postList.length + 1,
+        important: important,
+        complete: complete,
+        id: taskList.length + 1,
       },
-      ...postList,
-    ]),
-      setModal(false);
+      ...taskList,
+    ]
+
+    localStorage.task = JSON.stringify(setTask)
+
+    setTaskList([...setTask])
+    setModal(false);
   };
 
   return (
