@@ -6,6 +6,7 @@ export default function OpenTask({ setModal, setPostList, postList }: any) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [important, setImportant] = useState(false);
+  const [complete, setComplete] = useState(false)
 
   const createNewTask = () => {
     setPostList([
@@ -42,11 +43,14 @@ export default function OpenTask({ setModal, setPostList, postList }: any) {
                 onChange={(e) => { setBody(e.target.value) }} value={body} className="modal_body"></textarea>
             </div>
             <div className="modal_task_setting">
-            <button 
-                    onClick={() => {setImportant(!important)}} 
-                    className={`btn_task btn_important_${important}`}>
-                    </button>
-                <input type="checkbox" placeholder="copmlete" />
+              <button 
+                className={`btn_task btn_important_${important}`}
+                onClick={() => {setImportant(!important)}}>
+              </button>
+              <button 
+                className={`btn_task btn_complete_${complete}`} 
+                onClick={()=>{setComplete(!complete)}}>
+              </button>
             </div>
           </div>
         </div>

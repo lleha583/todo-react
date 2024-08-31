@@ -31,6 +31,18 @@
     background-size: 100%;
 }
 
+.btn_complete_true {
+    background-image: url('../../assets/icons/icon_complete.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.btn_complete_false {
+    background-image: url('../../assets/icons/icon_complete_false.svg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
 .btn_remove {
     background-image: url('../../assets/icons/remove.svg');
     background-repeat: no-repeat;
@@ -44,16 +56,18 @@
     border: none;
     background-color: none;
     border-radius: 10px;
+    border: 1px solid gray
 }
 
 .btn_task {
     width: 35px;
     height: 35px;
-    margin: 5px;
+    margin: 0 15px;
     border-radius: 10px;
     border: none;
     box-sizing: border-box;
     background-color: white;
+    transition: 0.2s;
 }
 
 .modal_task {
@@ -67,7 +81,9 @@
 }
 
 .modal_task_setting {
-
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid black;
 }
 
 .modal_title {

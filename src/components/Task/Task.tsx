@@ -30,7 +30,15 @@ export default function Task({ important }: IProps) {
       if(task.id == id) task.important = !task.important
       return true
     }))
-  }
+  };
+
+  //выполнить
+  const changeComplete = (id: number) => {
+    setPostList(postList.filter((task)=> {
+      if(task.id == id) task.complete = !task.complete
+      return true
+    }))
+  };
 
   //список важных дел
   useEffect(()=> {
@@ -57,12 +65,16 @@ export default function Task({ important }: IProps) {
                 </div>
                 <div className="task_list_btn">
                   <button 
+                    className={`btn_task btn_complete_${item.complete}`} 
+                    onClick={()=>{changeComplete(item.id)}}>
+                  </button>
+                  <button 
                     onClick={() => {changeImportant(item.id)}} 
                     className={`btn_task btn_important_${item.important}`}>
-                    </button>
+                  </button>
                   <button className="btn_task btn_remove"
                     onClick={() => { deleteTask(item.id);}}>
-                    </button>
+                  </button>
                 </div>
               </div>
             );
