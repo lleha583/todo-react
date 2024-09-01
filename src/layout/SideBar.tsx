@@ -17,7 +17,7 @@ export default function SideBar() {
         </div>
         <div className="navigation">
           <nav>
-            <Link onClick={()=>{setOpenSide(false)}} className="sidebar_link" to={"today"}>
+            <Link onClick={()=>{setOpenSide(false)}} className="sidebar_link" to={"tasks"}>
               <img src={iconToday} alt="" />
               <h3>today</h3>
             </Link>
@@ -26,10 +26,10 @@ export default function SideBar() {
               <img src={iconImportant} alt="" />
               <h3>important</h3>
             </Link>
-            <a onClick={()=>{setOpenSide(false)}} className="sidebar_link" href="">
+            <Link onClick={()=>{setOpenSide(false)}} className="sidebar_link" to={"completed"}>
               <img src={iconComplete} />
               <h3>completed</h3>
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

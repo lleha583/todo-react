@@ -1,38 +1,31 @@
 import { useEffect, useState } from "react";
-import "./task.scss";
+import "./taskList.scss";
+import { ITask } from "../../interface/interface";
 import { dataTask } from "../../data/dataTask";
 import OpenTask from "./OpenTask";
-import { ITask } from "../../interface/interface";
 
 interface IProps {
-  important: boolean
+  status: "today" | "important" | "completed"
 }
 
-export default function Task({ important }: IProps) {
+export default function TaskList({ status }: IProps) {
 
-  
-  const [taskList, setTaskList] = useState<ITask[]>([...dataTask]);
-  const [modal, setModal] = useState<boolean>(false);
-  
-  //список важных дел
+  const [taskList, setTaskList] = useState<ITask[]>([])
+  const [modal, setModal] = useState()
+
+  //фильтр списка по статусу
   useEffect(()=> {
+    if(status !== "today") {
+      return setTaskList(()=>{return dataTask.filter((task: ITask) => {
+          if (task[status] === true) return true
+          return false
+        })})}
+      setTaskList([...dataTask])
+  }, [status])
 
-    if (localStorage.key(0) !== null ) {
-      setTaskList([...JSON.parse(localStorage.task)])
-    } else {
-      localStorage.setItem('task', '')
-    }
-
-    if(important === true) {
-      setTaskList(()=> {return taskList.filter((post: any)=> {
-      if (post.important === true) return true
-      return false
-    })})}
-  }, [])
-
-  //удалить задачу
+  //удалить задачу     not working
   const deleteTask = (id: number) => {
-    setTaskList(() => {
+    let TaskList = (() => {
       return taskList.filter((task: ITask) => {
         if (task.id == id) return false;
       return true;
@@ -40,36 +33,29 @@ export default function Task({ important }: IProps) {
     })
   };
 
-  //сделать задачу важным
+  //сделать задачу важным       not working
   const changeImportant = (id: number) => {
-    const setTask = taskList
-    setTaskList(setTask.filter((task) => {
+    setTaskList(()=>{return taskList.filter((task: any) => {
       if(task.id == id) task.important = !task.important
       return true
-    }))
-
-    localStorage.task = JSON.stringify(setTask)
+    })})
   };
 
-  //выполнить
+  //выполнить        not working
   const changeComplete = (id: number) => {
-    const setTask = taskList
-    setTaskList(setTask.filter((task) => {
-      if(task.id == id) task.complete = !task.complete
+    setTaskList(()=>{return taskList.filter((task: any) => {
+      if(task.id == id) task.important = !task.important
       return true
-    }))
-
-    localStorage.task = JSON.stringify(setTask)
+    })})
   };
 
   return (
     <>
       <div className="task">
         <div>
-          <button className="btn_task_add" onClick={() => {setModal(true);}}>Add new task</button>
         </div>
         <div className="task_list">
-          {taskList.map((item: any) => {
+          {taskList.map((item: ITask) => {
             return (
               <div className="task_list__inner" key={item.id}>
                 <div>
@@ -78,7 +64,7 @@ export default function Task({ important }: IProps) {
                 </div>
                 <div className="task_list_btn">
                   <button 
-                    className={`btn_task btn_complete_${item.complete}`} 
+                    className={`btn_task btn_complete_${item.completed}`} 
                     onClick={()=>{changeComplete(item.id)}}>
                   </button>
                   <button 

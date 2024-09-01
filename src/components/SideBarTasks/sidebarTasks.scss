@@ -1,0 +1,30 @@
+.tasks_sidebar {
+    width: 450px;
+    background-color: #ebebeb;
+    
+}
+
+.tasks_sidebar nav {
+    width: 400px;
+    background-color: #ebebeb;
+    
+}
+
+.tasks_sidebar_div {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 1px 0;
+}
+
+.tasks_sidebar_div img {
+    background-color: white;
+}
+
+.btn_task_sidebar {
+    width: 100%;
+    background-color: white;
+    border: none;
+}

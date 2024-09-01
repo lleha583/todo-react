@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import Today from "../pages/Today";
-import Important from "../pages/important";
+import Important from "../pages/Important";
+import Completed from "../pages/completed";
+import Tasks from "../pages/Tasks/Tasks";
 
 const router = createBrowserRouter([
     {
@@ -9,13 +10,18 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: 'today',
-                element: <Today />
+                path: 'tasks',
+                element: <Tasks />
             },
             {
                 path: 'important',
                 element: <Important />
+            },
+            {
+                path: 'completed',
+                element: <Completed />
             }
+
 
         ],
     }

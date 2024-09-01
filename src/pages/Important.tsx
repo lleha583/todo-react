@@ -1,11 +1,11 @@
-import Task from "../components/Task/Task";
+import TaskList from "../components/TaskList/TaskList";
 
 export default function Important() {
   return (
     <>
       <section>
         <h1>important</h1>
-        <Task important={true} />
+        <TaskList status={"important"} />
       </section>
     </>
   );

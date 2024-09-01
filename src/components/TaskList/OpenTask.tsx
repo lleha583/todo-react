@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
-import './task.scss'
+import './taskList.scss'
 
 export default function OpenTask({ setModal, setTaskList, taskList }: any) {
   const [title, setTitle] = useState('');
