@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./taskList.scss";
 import { ITask } from "../../interface/interface";
-import { dataTask } from "../../data/dataTask";
+import dataTask from "../../data/dataTask.json";
 import OpenTask from "./OpenTask";
 
 interface IProps {
