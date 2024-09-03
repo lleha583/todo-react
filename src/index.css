@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #ebebeb;
 }
 
 section {
@@ -19,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
   background-color: none;
   text-decoration: none;
+  transition: 0.1s;
 }
 
 a:hover, button:hover {

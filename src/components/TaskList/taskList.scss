@@ -50,6 +50,11 @@
     background-size: 100%;
 }
 
+.task_completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
 .btn_task_add {
     width: 400px;
     height: 40px;

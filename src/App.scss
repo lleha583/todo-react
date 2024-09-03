@@ -1,5 +1,10 @@
 .root_children {
     margin: 0;
     height: 100vh;
-    background-color: #ebebeb;
+    display: flex;
+}
+
+.todo {
+    text-align: center;
+    margin: 100px;
 }

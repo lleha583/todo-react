@@ -3,7 +3,7 @@
     "title": "name",
     "body": "note",
     "important": false,
-    "completed": true,
+    "completed": false,
     "id": 0
   },
   {

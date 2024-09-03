@@ -1,36 +1,37 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./taskList.scss";
 import { ITask } from "../../interface/interface";
 import dataTask from "../../data/dataTask.json";
 import OpenTask from "./OpenTask";
-import { useDispatch, useSelector } from "react-redux";
-import { changeCompleted, changeImportant, deleteTask } from "../../store/TaskSlice";
 
-interface IProps {
-  status: "today" | "important" | "completed"
-}
+export default function TaskList() {
 
-export default function TaskList({ status }: IProps) {
-
-  const getTasks = useSelector((state: {allTask: ITask[]}) => {return state.allTask})
-  const dispath = useDispatch()
-
-
-  console.log(getTasks)
-  const [taskList, setTaskList] = useState<ITask[]>([])
+  const [taskList, setTaskList] = useState<ITask[]>([...dataTask])
   const [modal, setModal] = useState(false)
 
-  //фильтр списка по статусу
-  useEffect(()=> {
-    setTaskList([...getTasks])
-    if(status !== "today") {
-      return setTaskList(()=>{return dataTask.filter((task: ITask) => {
-          if (task[status] === true) return true
-          return false
-        })})}
-      
-  }, [getTasks, status])
+  const changeCompleted = (id: number) => {
+    const comp = taskList.filter((task: ITask) => {
+      if(task.id == id) task.completed = !task.completed
+      return true
+    })
+    setTaskList([...comp])
+  }
 
+  const changeImportant = (id: number) => {
+    const imp = taskList.filter((task: ITask) => {
+      if(task.id == id) task.important = !task.important
+      return true
+    })
+    setTaskList([...imp])
+  }
+
+  const deleteTask = (id: number) => {
+    const del = taskList.filter((task: ITask) => {
+      if (task.id == id) return false;
+      return true;
+    })
+    setTaskList([...del])
+  }
 
   return (
     <>
@@ -43,20 +44,20 @@ export default function TaskList({ status }: IProps) {
             return (
               <div className="task_list__inner" key={item.id}>
                 <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.body}</p>
+                  <h2 className={item.completed ? "task_completed" : ""}>{item.title}</h2>
+                  <p className={item.completed ? "task_completed" : ""}>{item.body}</p>
                 </div>
                 <div className="task_list_btn">
                   <button 
                     className={`btn_task btn_complete_${item.completed}`} 
-                    onClick={()=>{dispath(changeCompleted(item.id))}}>
+                    onClick={()=>{changeCompleted(item.id)}}>
                   </button>
                   <button 
-                    onClick={() => {dispath(changeImportant(item.id))}}
+                    onClick={() => {changeImportant(item.id)}}
                     className={`btn_task btn_important_${item.important}`}>
                   </button>
                   <button className="btn_task btn_remove"
-                    onClick={() => {dispath(deleteTask(item.id))}}>
+                    onClick={() => {deleteTask(item.id)}}>
                   </button>
                 </div>
               </div>
@@ -65,7 +66,7 @@ export default function TaskList({ status }: IProps) {
         </div>
       </div>
       {modal === true ? (
-        <OpenTask setModal={setModal} />
+        <OpenTask setModal={setModal} setTaskList={setTaskList} taskList={taskList} />
       ) : (
         ""
       )}

@@ -1,11 +1,8 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import "./taskList.scss";
-import { useDispatch } from "react-redux";
-import { addNewTask } from "../../store/TaskSlice";
 
-export default function OpenTask({ setModal }: any) {
-  const dispath = useDispatch();
+export default function OpenTask({ setModal, setTaskList, taskList }: any) {
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -18,9 +15,9 @@ export default function OpenTask({ setModal }: any) {
       body: body,
       important: important,
       completed: complete,
-      id: null
+      id: taskList.length + 1,
     }
-    dispath(addNewTask(setTask));
+    setTaskList([setTask, ...taskList])
     setModal(false);
   };
 

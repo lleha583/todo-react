@@ -1,18 +1,17 @@
 
-import { Outlet } from 'react-router-dom'
 import './App.scss'
-import SideBar from './layout/SideBar'
+import TaskList from './components/TaskList/TaskList'
 
 
 function App() {
 
   return (
-    <>
-      <SideBar />
+    <div>
+      <h1 className='todo'>ToDo List</h1>
       <div className='root_children'>
-        <Outlet />
+        <TaskList />
       </div>
-    </>
+    </div>
   )
 }
 
